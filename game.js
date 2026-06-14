@@ -377,6 +377,7 @@ let donoDaCasa = { pos: [0, 0.6, -42.0], speed: 0.06, estado: "DORMINDO" };
 let posPolicia = [0, 0.0, 12.0]; 
 let animacaoPoliciaAndando = false;
 let lanternaLigada = false;
+let consoleAberto = false; // Controle do Console CS2
 
 let introFase = 0;
 let estadoAnterior = "MENU";
@@ -427,7 +428,7 @@ document.addEventListener('pointerlockchange', () => {
             lastTime = performance.now(); 
         }
     } else {
-        if (!digitandoSenha && (estadoJogo === "JOGANDO" || estadoJogo === "INTRO" || estadoJogo === "CUTSCENE" || estadoJogo === "CUTSCENE_POLICIA" || estadoJogo === "CUTSCENE_VITORIA")) {
+        if (!digitandoSenha && !consoleAberto && (estadoJogo === "JOGANDO" || estadoJogo === "INTRO" || estadoJogo === "CUTSCENE" || estadoJogo === "CUTSCENE_POLICIA" || estadoJogo === "CUTSCENE_VITORIA")) {
             estadoAnterior = estadoJogo;
             estadoJogo = "PAUSADO";
             document.getElementById("menu-pause").style.display = "flex";
@@ -528,7 +529,7 @@ function iniciarJogoReal() {
 }
 
 document.addEventListener('mousemove', e => {
-    if (document.pointerLockElement === canvas && playerControlavel && estadoJogo === "JOGANDO" && !digitandoSenha) {
+    if (document.pointerLockElement === canvas && playerControlavel && estadoJogo === "JOGANDO" && !digitandoSenha && !consoleAberto) {
         yaw += e.movementX * 0.1; pitch -= e.movementY * 0.1;
         if (pitch > 89.0) pitch = 89.0; if (pitch < -89.0) pitch = -89.0;
     }
@@ -536,6 +537,28 @@ document.addEventListener('mousemove', e => {
 
 window.onkeydown = e => { 
     let key = e.key.toLowerCase();
+
+    // Console do Desenvolvedor
+    if (key === "'" || key === "`") {
+        e.preventDefault();
+        consoleAberto = !consoleAberto;
+        const consoleUi = document.getElementById("console-ui");
+        const inputConsole = document.getElementById("console-input");
+        
+        if (consoleAberto) {
+            consoleUi.classList.remove("hidden");
+            document.exitPointerLock();
+            setTimeout(() => inputConsole.focus(), 10);
+        } else {
+            consoleUi.classList.add("hidden");
+            inputConsole.blur();
+            if(estadoJogo === "JOGANDO" && !digitandoSenha) canvas.requestPointerLock();
+        }
+        return;
+    }
+
+    if (consoleAberto) return; // Se o console tiver aberto não processa o restante
+
     keys[key] = true; 
 
     if (estadoJogo === "INTRO" && key === 'f') {
@@ -967,7 +990,7 @@ function render(now) {
         }
 
         let front = vec3.create(); front[0] = Math.cos(glMatrix.toRadian(yaw)) * Math.cos(glMatrix.toRadian(pitch)); front[1] = Math.sin(glMatrix.toRadian(pitch)); front[2] = Math.sin(glMatrix.toRadian(yaw)) * Math.cos(glMatrix.toRadian(pitch)); vec3.normalize(camFront, front);
-        if (playerControlavel && !digitandoSenha) {
+        if (playerControlavel && !digitandoSenha && !consoleAberto) {
             let camRight = vec3.create(); vec3.cross(camRight, camFront, camUp); vec3.normalize(camRight, camRight);
             let tempFront = vec3.fromValues(camFront[0], 0, camFront[2]); vec3.normalize(tempFront, tempFront);
             let spd = 0.15; 
@@ -1121,7 +1144,7 @@ function render(now) {
 
     // --- UI Dicas ---
     let exibirDicaFixa = false;
-    if(estadoJogo === "JOGANDO" && playerControlavel && !avisoTemporario && !digitandoSenha) {
+    if(estadoJogo === "JOGANDO" && playerControlavel && !avisoTemporario && !digitandoSenha && !consoleAberto) {
         let pertoPortaInterna = portasInt.some(p => vec3.distance(camPos, [p.hinge[0] + p.width/2, 1.7, p.hinge[2]]) < 4.0);
         
         let pertoPapel = false;
@@ -1330,4 +1353,42 @@ function render(now) {
     // Pilhas de ouro
     itens.forEach(item => { if(!item.roubado && cofre.aberto) desenhaObjeto(vp, item.pos, item.scale, item.tex); });
 }
+
+// --- LÓGICA DO CONSOLE DE COMANDOS ---
+document.getElementById("console-input").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        let cmd = this.value.trim();
+        if (cmd !== "") {
+            registrarConsole("] " + cmd);
+            processarComandoConsole(cmd);
+        }
+        this.value = ""; // Limpa o input
+    }
+});
+
+function registrarConsole(texto) {
+    const log = document.getElementById("console-log");
+    log.innerHTML += texto + "<br>";
+    log.scrollTop = log.scrollHeight; // Desce o scroll pro final
+}
+
+function processarComandoConsole(cmd) {
+    // Tira os espaços em branco extras em volta do "=" pra facilitar a leitura
+    let comandoLimpo = cmd.replace(/\s*=\s*/g, '=').toLowerCase();
+
+    if (comandoLimpo.startsWith("vr_amanhecer=")) {
+        let valor = parseFloat(comandoLimpo.split("=")[1]);
+        
+        if (!isNaN(valor)) {
+            tempoAmanhecer = valor;
+            registrarConsole(`<span style="color: #4caf50;">[SV] tempoAmanhecer alterado para ${valor} segundos.</span>`);
+        } else {
+            registrarConsole('<span style="color: #f44336;">[Erro] Valor numérico inválido. Ex: vr_amanhecer=120</span>');
+        }
+    } 
+    else {
+        registrarConsole(`<span style="color: #f44336;">[Erro] Comando desconhecido: ${cmd}</span>`);
+    }
+}
+
 requestAnimationFrame(render);
