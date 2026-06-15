@@ -1201,8 +1201,9 @@ function render(now) {
     
     if (viewPosLoc !== null) gl.uniform3fv(viewPosLoc, camPos);
 
-    // Passa os dados da Lanterna pro Shader
-    if (flashLoc !== null) gl.uniform1i(flashLoc, lanternaLigada ? 1 : 0);
+   // Passa os dados da Lanterna pro Shader (oculta durante cutscenes)
+    let exibindoCutscene = estadoJogo === "INTRO" || estadoJogo.startsWith("CUTSCENE");
+    if (flashLoc !== null) gl.uniform1i(flashLoc, (lanternaLigada && !exibindoCutscene) ? 1 : 0);
     if (camFrontLoc !== null) gl.uniform3fv(camFrontLoc, camFront);
 
     gl.enable(gl.CULL_FACE); 

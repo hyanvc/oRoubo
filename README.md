@@ -10,6 +10,11 @@ O trabalho atende integralmente a todos os critérios exigidos na segunda avalia
 
 ---
 
+##  Video do Projeto
+
+https://www.youtube.com/watch?v=oKCsi9yNUPs
+---
+
 ##  Equipe e Contexto Acadêmico
 
 * **Instituição:** Universidade Estadual do Ceará (UECE)
@@ -27,7 +32,7 @@ O trabalho atende integralmente a todos os critérios exigidos na segunda avalia
 Um velho ganancioso e sem escrúpulos roubou a herança legítima da sua família e a trancou em um cofre blindado nos fundos de sua residência. Sabendo disso, você decide invadir a propriedade dele estrategicamente durante a calada da noite para recuperar o que é seu por direito.
 
 ### O Objetivo
-Você deve se infiltrar na casa, explorar os cômodos em busca de **3 pistas textuais** espalhadas que revelam, por meio de charadas matemáticas, a combinação exata de uma **senha numérica de 3 dígitos**. Após descriptografar as pistas, você deve abrir o cofre, coletar as **3 pilhas de ouro** da sua herança — transportando uma por uma — e guardá-las em segurança no porta-malas do seu **carro de fuga** (um Chevrolet Camaro) estacionado na rua.
+Você deve se infiltrar na casa, explorar os cômodos em busca de **3 pistas textuais** espalhadas que revelam, por meio de charadas matemáticas, a combinação exata de uma **senha numérica de 3 dígitos**. Após descriptografar as pistas, você deve abrir o cofre, coletar as **3 pilhas de ouro** da sua herança  transportando uma por uma  e guardá-las em segurança no porta-malas do seu **carro de fuga** (um Chevrolet Camaro) estacionado na rua.
 
 ### Condições de Derrota e Vitória
 1. **Flagrante (O Despertar do Velho):** O dono da casa está dormindo no quarto principal. Caso você faça muito barulho dentro da casa (barra de ruído atinja **100%**) ou erre a senha do cofre **3 vezes consecutivas**, o velho acordará e começará a caçá-lo implacavelmente utilizando um sistema de navegação e colisão tridimensional. Se ele te tocar, é Game Over.
