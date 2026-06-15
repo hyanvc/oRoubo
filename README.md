@@ -2,6 +2,14 @@
 
 # HERANÇA ROUBADA — Stealth Horror 3D
 
+
+<p align="center">
+  <img src="imagem.png" alt="Herança Roubada" width="800">
+  <br>
+  <em>Figura 1 - Gameplay do jogo Herança Roubada</em>
+</p>
+
+
 ##  Sobre o Projeto
 
 Este projeto consiste no desenvolvimento de um **Jogo 3D de Stealth Horror** intitulado **"Herança Roubada"**, construído inteiramente do zero utilizando **WebGL 2.0 Puro** (computação gráfica de baixo nível) sem o auxílio de motores ou bibliotecas de alto nível (como *Three.js* ou *Babylon.js*). A única dependência externa para cálculos de matrizes é a biblioteca auxiliar `gl-matrix.js`.
@@ -55,7 +63,7 @@ O jogo utiliza um mapeamento de controles intuitivo no estilo de jogos em primei
 
 ---
 
-## 🛠️ Requisitos Técnicos Implementados
+##  Requisitos Técnicos Implementados
 
 Abaixo está o detalhamento científico e técnico de como as teorias de Computação Gráfica foram implementadas de maneira manual no código-fonte do sistema.
 
@@ -102,6 +110,30 @@ O arquivo fonte principal está organizado de forma linear, seguindo a topologia
 5. **Loop Principal de Renderização (`render`):** Calcula o tempo delta, resolve físicas de colisão de eixo X e Z, gerencia a máquina de estados (`INTRO`, `JOGANDO`, `CUTSCENE`, `PAUSADO`) e submete os arrays de triângulos para a placa de vídeo.
 
 ---
+
+
+
+## Estrutura do Projeto
+
+
+pasta/
+├── .vscode/                        # Configurações do editor VS Code
+├── Chevrolet_Camaro_SS_High.obj    # Modelo 3D do carro de fuga
+├── f_358535bc85c70d53.png          # Textura/Imagem auxiliar do ambiente
+├── f_992535bc85c69ff2.png          # Textura/Imagem auxiliar do ambiente
+├── game.js                         # Lógica principal do motor gráfico e do jogo
+├── glasses.png                     # Textura dos óculos dos personagens
+├── HerancaRoubada.html             # Arquivo principal e ponto de entrada da aplicação
+├── imagem.png                      # Imagem exemplo do jogo
+├── legs.png                        # Textura para os membros inferiores
+├── Rak_OBJ.mtl                     # Definições de materiais para os modelos 3D
+├── README.md                       # Documentação principal do projeto
+└── vovo.obj                        # Modelo 3D do antagonista (o Velho)
+
+---
+
+
+
 
 ##  Como Executar o Projeto
 
