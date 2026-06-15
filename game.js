@@ -874,6 +874,7 @@ function rodarCutsceneAcordar() {
 
     setTimeout(() => { 
         uiAviso.classList.add("hidden"); donoDaCasa.estado = "CAÇANDO"; playerControlavel = true; estadoJogo = "JOGANDO"; 
+        cutsceneRodando = false; // <--- ADICIONADO AQUI
         vec3.copy(camPos, camPosSalva); yaw = yawSalvo; pitch = pitchSalvo;
     }, 6000);
 }
@@ -925,15 +926,16 @@ function render(now) {
         rodarCutscenePolicia();
     }
 
+    // <--- ALTERADO AQUI --->
     if (estadoJogo === "JOGANDO") {
-        if (donoDaCasa.estado === "DORMINDO" && !cutsceneRodando && !digitandoSenha) {
+        if (!cutsceneRodando && !digitandoSenha) {
             tempoAmanhecer -= dt;
             if (tempoAmanhecer < 0) tempoAmanhecer = 0;
             uiTempo.innerText = tempoAmanhecer.toFixed(1) + "s";
             
             if (tempoAmanhecer <= 0) {
                 if (ambiente === "EXTERIOR") rodarCutscenePolicia();
-                else rodarCutsceneAcordar();
+                else if (donoDaCasa.estado === "DORMINDO") rodarCutsceneAcordar();
             }
         }
 
