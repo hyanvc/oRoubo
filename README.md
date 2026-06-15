@@ -12,7 +12,7 @@ O trabalho atende integralmente a todos os critérios exigidos na segunda avalia
 
 ##  Video do Projeto
 
-https://www.youtube.com/watch?v=oKCsi9yNUPs
+https://youtu.be/u4FWDakUV64
 ---
 
 ##  Equipe e Contexto Acadêmico
