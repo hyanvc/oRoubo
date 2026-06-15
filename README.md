@@ -4,7 +4,7 @@
 
 
 <p align="center">
-  <img src="imagem.png" alt="Herança Roubada" width="800">
+  <img src="imagemjogo.png" alt="Herança Roubada" width="800">
   <br>
   <em>Gameplay do jogo Herança Roubada</em>
 </p>
