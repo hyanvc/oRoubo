@@ -115,7 +115,7 @@ O arquivo fonte principal está organizado de forma linear, seguindo a topologia
 
 ## Estrutura do Projeto
 
-
+```text
 pasta/
 ├── .vscode/                        # Configurações do editor VS Code
 ├── Chevrolet_Camaro_SS_High.obj    # Modelo 3D do carro de fuga
@@ -124,13 +124,12 @@ pasta/
 ├── game.js                         # Lógica principal do motor gráfico e do jogo
 ├── glasses.png                     # Textura dos óculos dos personagens
 ├── HerancaRoubada.html             # Arquivo principal e ponto de entrada da aplicação
-├── imagemjogo.png                      # Imagem exemplo do jogo
+├── imagemjogo.png                  # Imagem exemplo do jogo
 ├── legs.png                        # Textura para os membros inferiores
 ├── Rak_OBJ.mtl                     # Definições de materiais para os modelos 3D
 ├── README.md                       # Documentação principal do projeto
 └── vovo.obj                        # Modelo 3D do antagonista (o Velho)
-
----
+```
 
 
 
