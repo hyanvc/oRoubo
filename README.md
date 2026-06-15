@@ -124,7 +124,7 @@ pasta/
 ├── game.js                         # Lógica principal do motor gráfico e do jogo
 ├── glasses.png                     # Textura dos óculos dos personagens
 ├── HerancaRoubada.html             # Arquivo principal e ponto de entrada da aplicação
-├── imagem.png                      # Imagem exemplo do jogo
+├── imagemjogo.png                      # Imagem exemplo do jogo
 ├── legs.png                        # Textura para os membros inferiores
 ├── Rak_OBJ.mtl                     # Definições de materiais para os modelos 3D
 ├── README.md                       # Documentação principal do projeto
