@@ -84,7 +84,7 @@ function createProgram(gl, vs, fs) {
     const p = gl.createProgram(); gl.attachShader(p, vS); gl.attachShader(p, fS); gl.linkProgram(p);
     return p;
 }
-
+// Referências aos uniforms utilizados pelos shaders
 const program = createProgram(gl, vs, fs);
 const matLoc = gl.getUniformLocation(program, "u_matrix");
 const modelLoc = gl.getUniformLocation(program, "u_model");
